@@ -43,9 +43,11 @@ function Register() {
                                         />
                                     </div >
 
-
-                                    <button className="btn btn-secondary" type="submit">
-                                        Registrarse
+                                    <button className="btn btn-secondary d-flex justify-content-center align-content-between" type="submit">
+                                        <i className="material-symbols-sharp mr-1">
+                                            save
+                                        </i>
+                                        Guardar
                                     </button>
                                     <Link to="/login">
                                     <small className="">
