@@ -1,46 +1,87 @@
 import "../public/css/style.css";
 import React from "react";
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { useForm, SubmitHandler } from 'react-hook-form'
 
-function Register() {
+type UserForm = {
 
+    id: string
+    name: string
+    lastname: string
+    email: string
+    password: string
+    password_confirm: string
+
+}
+
+function RegisterForm() {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<UserForm>();
+    const [data, setData] = useState("");
+    const onSubmit: SubmitHandler<UserForm> = data => setData(JSON.stringify(data));;
+
+    // const onSubmit = handleSubmit((data) => {
+    //     setData(JSON.stringify(data));
+    //     console.log(JSON.stringify(data))
+    // });
     return (
         <React.Fragment>
             <div id='register-body'>
-                <div className="container pt-5">
+                <div className="container pt-5 pb-5">
                     <div className="col-md-8 col-lg-5 mx-auto">
                         <div className="card ">
                             <h5 id="card-header" className="card-header">Agregar Persona</h5>
                             <div className="card-body">
-                                <form>
+                                <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="form-group">
                                         <label htmlFor="">Nombre</label>
                                         <input
                                             type="text"
-                                            name="nombre"
                                             placeholder="Ingrese su nombre"
-                                            required
+                                            {...register("name", { required: true, pattern: /^[A-Za-z]+$/i } )}
                                         />
+                                        {errors.name && <span className="text-danger">Este campo es requerido*</span>}
                                     </div>
 
                                     <div className="form-group mt-3">
                                         <label htmlFor="">Apellido</label>
                                         <input
                                             type="text"
-                                            name="apellido"
                                             placeholder="Ingrese su apellido"
-                                            required
+                                            {...register("lastname", { required: true })}
                                         />
+                                        {errors.lastname && <span className="text-danger">Este campo es requerido*</span>}
+                                    </div>
+
+                                    <div className="form-group mt-3">
+                                        <label htmlFor="">Correo</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Ingrese su apellido"
+                                            {...register("email", { required: true })}
+                                        />
+                                        {errors.email && <span className="text-danger">Este campo es requerido*</span>}
                                     </div>
 
                                     <div className="form-group mt-3 ">
-                                        <label htmlFor="">Cedula</label>
+                                        <label htmlFor="">Contraseña</label>
                                         <input
-                                            type="number"
-                                            name="cedula"
-                                            placeholder="Ingrese su cedula"
-                                            required
+                                            type="text"
+                                            placeholder="Ingrese su contraseña"
+                                            {...register("password", { required: true, maxLength: 8 })}
                                         />
+                                        {errors.password && <span className="text-danger">Este campo es requerido*</span>}
+                                    </div >
+
+                                    <div className="form-group mt-3 ">
+                                        <label htmlFor="">Confirmar Contraseña</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Confirme su contraseña"
+                                            {...register("password_confirm", { required: true, maxLength: 8 })}
+                                        />
+                                        {errors.password_confirm && <span className="text-danger">Este campo es requerido*</span>}
                                     </div >
 
                                     <button className="btn btn-secondary d-flex justify-content-center align-content-between" type="submit">
@@ -50,11 +91,12 @@ function Register() {
                                         Guardar
                                     </button>
                                     <Link to="/login">
-                                    <small className="">
-                                        <p className="mt-3">¿Ya tiene una cuenta? <strong>Inicie sesion</strong></p>
-                                    </small>
+                                        <small className="">
+                                            <p className="mt-3">¿Ya tiene una cuenta? <strong>Inicie sesion</strong></p>
+                                        </small>
                                     </Link>
                                 </form >
+                                <p>{data}</p>
                             </div>
                         </div>
                     </div>
@@ -65,4 +107,4 @@ function Register() {
 
 }
 
-export default Register;
+export default RegisterForm;

@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Login from "./components/Login";
-import Register from "./components/Register";
+import RegisterForm from "./components/Register";
 
 export function Redirect() {
     
@@ -11,7 +11,7 @@ export function Redirect() {
           <Routes>
             <Route path="Login" element={<Login/>} />
             <Route path="/" element={<Login />} />
-            <Route path="Register" element={<Register/>} />
+            <Route path="Register" element={<RegisterForm />} />
           </Routes>
         </div>
       </Router>
