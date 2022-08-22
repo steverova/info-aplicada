@@ -1,17 +1,7 @@
-import "../public/css/style.css";
 import React from "react";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-type UserForm = {
-  id: string;
-  name: string;
-  lastname: string;
-  email: string;
-  password: string;
-  password_confirm: string;
-};
+import { UserForm } from "../interfaces/UserForm";
 
 function RegisterForm() {
   const {
@@ -19,7 +9,9 @@ function RegisterForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<UserForm>();
+
   const [data, setData] = useState("");
+
   const onSubmit: SubmitHandler<UserForm> = (data) =>
     setData(JSON.stringify(data));
 
@@ -60,7 +52,7 @@ function RegisterForm() {
                       </div>
                       <div className="col-6">
                         <div className="form-group ml-3">
-                          <label htmlFor="">Apelllido</label>
+                          <label htmlFor="">Apellido</label>
                           <input
                             type="text"
                             {...register("lastname", { required: true })}

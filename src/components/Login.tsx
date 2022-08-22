@@ -1,13 +1,9 @@
-import "../public/css/style.css";
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-type LoginForm = {
-  email: string;
-  password: string;
-};
+import { LoginForm } from "../interfaces/LoginForm";
 
 function Register() {
   const {
@@ -15,9 +11,12 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginForm>();
+
   const [data, setData] = useState("");
+
   const onSubmit: SubmitHandler<LoginForm> = (data) =>
     setData(JSON.stringify(data));
+
   return (
     <React.Fragment>
       <div id="register-body">
@@ -73,7 +72,6 @@ function Register() {
                       </p>
                     </small>
                   </Link>
-
                   <small>
                     <p>
                       Volver a <strong>Inicio</strong>

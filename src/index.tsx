@@ -1,6 +1,6 @@
 import React from 'react';
+import "../src/assets/css/style.css";
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import Redirect from './Redirect';
 
 const root = ReactDOM.createRoot(
