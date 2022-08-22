@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginForm } from "../interfaces/LoginForm";
-import "../assets/css/style.css";
+import Footer from "./page/CustomFooter";
 
 function Register() {
   const {
@@ -90,12 +90,8 @@ function Register() {
           </div>
         </div>
       </div>
-
-      <footer className="footer p-4">
-        <div className="container">
-          <p className="text-muted">Place sticky footer content here.</p>
-        </div>
-      </footer>
+      <Footer></Footer>
+      
     </React.Fragment>
   );
 }

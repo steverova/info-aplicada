@@ -7,27 +7,26 @@ import * as yup from "yup";
 import "../assets/css/style.css";
 import { UserForm } from "../interfaces/UserForm";
 import userSchema from "../validations/userFormValidations";
+import Footer from "./page/CustomFooter";
 
 function RegisterForm() {
-
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm({
-      resolver: yupResolver(userSchema),
-    });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(userSchema),
+  });
 
   const [data, setData] = useState("");
 
-  const onSubmit = (data:any) =>
-    setData(JSON.stringify(data));
+  const onSubmit = (data: any) => setData(JSON.stringify(data));
 
   return (
     <React.Fragment>
       <div id="register-body">
         <div className="container pt-5 pb-5">
-          <div className="col-md-8 col-lg-8 mx-auto">
+          <div className="col-md-10 col-lg-7 mx-auto">
             <div className="card ">
               <div>
                 <h1 className=" p-3 d-flex justify-content-center title-header">
@@ -38,7 +37,7 @@ function RegisterForm() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="d-flex">
                     <div className="row">
-                      <div className="col-6">
+                      <div className="col-sm-12 col-md-6 col-lg-6">
                         <div className="form-group">
                           <label htmlFor="">Nombre</label>
                           <input
@@ -57,8 +56,8 @@ function RegisterForm() {
                           />
                         </div>
                       </div>
-                      <div className="col-6">
-                        <div className="form-group ml-3">
+                      <div className="col-sm-12 col-md-6 col-lg-6">
+                        <div className="form-group">
                           <label htmlFor="">Apellido</label>
                           <input
                             type="text"
@@ -106,7 +105,7 @@ function RegisterForm() {
 
                   <div className="d-flex">
                     <div className="row">
-                      <div className="col-6">
+                      <div className="col-sm-12 col-md-6 col-lg-6">
                         <div className="form-group">
                           <label htmlFor="">Contraseña</label>
                           <input
@@ -131,8 +130,8 @@ function RegisterForm() {
                         </div>
                       </div>
 
-                      <div className="col-6">
-                        <div className="form-group ml-3">
+                      <div className="col-sm-12 col-md-6 col-lg-6">
+                        <div className="form-group">
                           <label htmlFor="">Contraseña*</label>
                           <input
                             type="text"
@@ -163,7 +162,7 @@ function RegisterForm() {
                   </div>
 
                   <button
-                    className="btn btn-secondary d-flex justify-content-center align-content-between"
+                    className="btn btn-cpurple btn-block d-flex justify-content-center align-content-between"
                     type="submit"
                   >
                     <i className="material-symbols-sharp mr-1">save</i>
@@ -182,12 +181,8 @@ function RegisterForm() {
             </div>
           </div>
         </div>
-      </div>  
-      <footer className="footer p-4">
-        <div className="container">
-          <p className="text-muted">Place sticky footer content here.</p>
-        </div>
-      </footer>
+      </div>
+      <Footer></Footer>
     </React.Fragment>
   );
 }
