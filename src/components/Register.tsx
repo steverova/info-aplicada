@@ -2,8 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UserForm } from "../interfaces/UserForm";
+import { Link } from "react-router-dom";
+import "../assets/css/style.css";
 
 function RegisterForm() {
+
   const {
     register,
     handleSubmit,
@@ -26,10 +29,12 @@ function RegisterForm() {
         <div className="container pt-5 pb-5">
           <div className="col-md-8 col-lg-8 mx-auto">
             <div className="card ">
-              <h5 id="card-header" className="card-header">
-                Agregar Persona
-              </h5>
-              <div className="card-body">
+              <div>
+                <h1 className=" p-3 d-flex justify-content-center title-header">
+                  Agregar Persona
+                </h1>
+              </div>
+              <div className="card-body pl-5 pr-5">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="d-flex">
                     <div className="row">
@@ -40,7 +45,9 @@ function RegisterForm() {
                             type="text"
                             {...register("name", { required: true })}
                             style={{
-                              border: errors.name ? "2px solid red" : "",
+                              border: errors.name
+                                ? "2px solid rgb(216, 52, 79)"
+                                : "",
                             }}
                             placeholder={
                               errors.name
@@ -57,7 +64,9 @@ function RegisterForm() {
                             type="text"
                             {...register("lastname", { required: true })}
                             style={{
-                              border: errors.lastname ? "2px solid red" : "",
+                              border: errors.lastname
+                                ? "2px solid rgb(216, 52, 79)"
+                                : "",
                             }}
                             placeholder={
                               errors.lastname
@@ -76,7 +85,9 @@ function RegisterForm() {
                       type="text"
                       {...register("email", { required: true })}
                       style={{
-                        border: errors.email ? "2px solid red" : "",
+                        border: errors.email
+                          ? "2px solid rgb(216, 52, 79)"
+                          : "",
                       }}
                       placeholder={
                         errors.email
@@ -95,7 +106,9 @@ function RegisterForm() {
                             type="text"
                             {...register("password", { required: true })}
                             style={{
-                              border: errors.password ? "2px solid red" : "",
+                              border: errors.password
+                                ? "2px solid rgb(216, 52, 79)"
+                                : "",
                             }}
                             placeholder={
                               errors.lastname
@@ -116,7 +129,7 @@ function RegisterForm() {
                             })}
                             style={{
                               border: errors.password_confirm
-                                ? "2px solid red"
+                                ? "2px solid rgb(216, 52, 79)"
                                 : "",
                             }}
                             placeholder={
@@ -137,20 +150,26 @@ function RegisterForm() {
                     <i className="material-symbols-sharp mr-1">save</i>
                     Guardar
                   </button>
-                  <a href={"/Login"}>
-                    <small>
-                      <p className="mt-3">
-                        ¿Ya tiene una cuenta? <strong>Inicie sesion</strong>
-                      </p>
-                    </small>
-                  </a>
                 </form>
                 <p>{data}</p>
+              </div>
+              <div className="panel-footer d-flex justify-content-center">
+                <Link to="/login">
+                  <h5 className="p-4">
+                    Ya tiene cuenta? <span>Inicie sesion</span>
+                  </h5>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <footer className="footer p-4">
+        <div className="container">
+          <p className="text-muted">Place sticky footer content here.</p>
+        </div>
+      </footer>
     </React.Fragment>
   );
 }

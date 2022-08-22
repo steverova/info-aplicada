@@ -1,0 +1,25 @@
+@import url("http://fonts.cdnfonts.com/css/roboto");
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.title-header {
+  font-family: "Roboto Light", sans-serif;
+  color: rgb(153, 106, 194);
+}
+
+.btn-cpurple {
+  background-color: rgb(153, 106, 194);
+  color: rgb(255, 255, 255);
+  padding: 0.5em;
+}
+
+.btn-cpurple:hover {
+  background-color: rgb(147, 88, 199);
+  color: rgb(255, 255, 255);
+}
+
+.bottom-title{
+    color: white;
+}
