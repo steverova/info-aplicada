@@ -1,27 +1,27 @@
-import React from "react";
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { UserForm } from "../interfaces/UserForm";
+import { ErrorMessage } from "@hookform/error-message";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import * as yup from "yup";
 import "../assets/css/style.css";
+import { UserForm } from "../interfaces/UserForm";
+import userSchema from "../validations/userFormValidations";
 
 function RegisterForm() {
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<UserForm>();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm({
+      resolver: yupResolver(userSchema),
+    });
 
   const [data, setData] = useState("");
 
-  const onSubmit: SubmitHandler<UserForm> = (data) =>
+  const onSubmit = (data:any) =>
     setData(JSON.stringify(data));
-
-  // const onSubmit = handleSubmit((data) => {
-  //     setData(JSON.stringify(data));
-  //     console.log(JSON.stringify(data))
-  // });
 
   return (
     <React.Fragment>
@@ -95,6 +95,13 @@ function RegisterForm() {
                           : "Correo: ejemplo@dominio.com"
                       }
                     />
+                    <small>
+                      <ErrorMessage
+                        errors={errors}
+                        name="email"
+                        render={({ message }) => <p>{message}</p>}
+                      />
+                    </small>
                   </div>
 
                   <div className="d-flex">
@@ -115,6 +122,11 @@ function RegisterForm() {
                                 ? "Este campo es requerido*"
                                 : "Ingrese su contraseña"
                             }
+                          />
+                          <ErrorMessage
+                            errors={errors}
+                            name="password"
+                            render={({ message }) => <p>{message}</p>}
                           />
                         </div>
                       </div>
@@ -138,6 +150,13 @@ function RegisterForm() {
                                 : "Ingrese su contraseña"
                             }
                           />
+                          <small>
+                            <ErrorMessage
+                              errors={errors}
+                              name="password_confirm"
+                              render={({ message }) => <p>{message}</p>}
+                            />
+                          </small>
                         </div>
                       </div>
                     </div>
@@ -163,8 +182,7 @@ function RegisterForm() {
             </div>
           </div>
         </div>
-      </div>
-
+      </div>  
       <footer className="footer p-4">
         <div className="container">
           <p className="text-muted">Place sticky footer content here.</p>
