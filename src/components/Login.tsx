@@ -1,21 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginForm } from "../interfaces/LoginForm";
 import Footer from "./page/CustomFooter";
+import Home from "./Home";
+import { useUser } from "../contexts/UserContext";
 
 function Register() {
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginForm>();
 
-  const [data, setData] = useState("");
+  const [logindata, setLogindata] = useState("");
+  const {setData} = useUser();
 
-  const onSubmit: SubmitHandler<LoginForm> = (data) =>
-    setData(JSON.stringify(data));
+  const onSubmit: SubmitHandler<LoginForm> = (logindata) => {
+    setLogindata(JSON.stringify(logindata));
+    setData(logindata);
+    navigate('/home');
+
+  };
 
   return (
     <React.Fragment>
@@ -72,7 +81,7 @@ function Register() {
                     Iniciar sesi&oacute;n
                   </button>
                 </form>
-                <p>{data}</p>
+                <p>{logindata}</p>
               </div>
               <div className="panel-footer d-flex justify-content-center">
                 <Link to="/register">
@@ -82,6 +91,7 @@ function Register() {
                 </Link>
               </div>
             </div>
+            <div></div>
             <div className="mt-3">
               <Link to="/register">
                 <h6 className="bottom-title">Volver al inicio</h6>
@@ -91,7 +101,6 @@ function Register() {
         </div>
       </div>
       <Footer></Footer>
-      
     </React.Fragment>
   );
 }

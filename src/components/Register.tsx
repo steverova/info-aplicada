@@ -20,7 +20,11 @@ function RegisterForm() {
 
   const [data, setData] = useState("");
 
-  const onSubmit = (data: any) => setData(JSON.stringify(data));
+  const onSubmit = (data: any) => {
+    setData(JSON.stringify(data));
+  };
+
+ 
 
   return (
     <React.Fragment>
