@@ -1,8 +1,9 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import RegisterForm from "./components/Register";
+import Home from "./view/components/Home";
+import Login from "./view/components/Login";
+import RegisterForm from "./view/components/Register";
+
 
 export function Redirect() {
     

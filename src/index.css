@@ -24,14 +24,7 @@
     color: white;
 }
 
-
-
-.footer-button{
-  position: absolute;
-  width: 100%;
-  background-color: rgb(212, 212, 212);
-  padding: 1em;
-  text-align: center;
-
+.place-footer{
+  background-color: white;
+  position: -webkit-sticky;
 }
-

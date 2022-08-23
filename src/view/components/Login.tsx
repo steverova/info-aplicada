@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { LoginForm } from "../interfaces/LoginForm";
-import Footer from "./page/CustomFooter";
-import Home from "./Home";
-import { useUser } from "../contexts/UserContext";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorMessage } from "@hookform/error-message";
+import { useUser } from "../../contexts/UserContext";
+import loginSchema from "../../validations/LoginFormValidation";
+import Footer from "../../view/page/CustomFooter";
 
 function Register() {
 
@@ -14,16 +15,17 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>();
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
   const [logindata, setLogindata] = useState("");
   const {setData} = useUser();
 
-  const onSubmit: SubmitHandler<LoginForm> = (logindata) => {
+  const onSubmit = (logindata: any) => {
     setLogindata(JSON.stringify(logindata));
     setData(logindata);
-    navigate('/home');
-
+    navigate("/home");
   };
 
   return (
@@ -55,7 +57,15 @@ function Register() {
                           : "Ingrese su correo"
                       }
                     />
+                    <small>
+                      <ErrorMessage
+                        errors={errors}
+                        name="email"
+                        render={({ message }) => <p>{message}</p>}
+                      />
+                    </small>
                   </div>
+                  
                   <div className="form-group mt-3">
                     <label htmlFor="">Contrase&ntilde;a</label>
                     <input
@@ -72,6 +82,13 @@ function Register() {
                           : "Ingrese su contraseña"
                       }
                     />
+                    <small>
+                      <ErrorMessage
+                        errors={errors}
+                        name="password"
+                        render={({ message }) => <p>{message}</p>}
+                      />
+                    </small>
                   </div>
                   <button
                     className="btn btn-cpurple btn-block d-flex justify-content-center align-content-between"

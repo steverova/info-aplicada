@@ -3,11 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import * as yup from "yup";
-import "../assets/css/style.css";
-import { UserForm } from "../interfaces/UserForm";
-import userSchema from "../validations/userFormValidations";
-import Footer from "./page/CustomFooter";
+import userSchema from "../../validations/userFormValidations";
+import Footer from "../../view/page/CustomFooter";
 
 function RegisterForm() {
   const {
@@ -23,8 +20,6 @@ function RegisterForm() {
   const onSubmit = (data: any) => {
     setData(JSON.stringify(data));
   };
-
- 
 
   return (
     <React.Fragment>

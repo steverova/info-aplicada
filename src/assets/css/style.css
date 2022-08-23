@@ -5,6 +5,7 @@
 #register-body {
   background-color: rgb(153, 106, 194);
   height: 100vh;
+  width: 100%;
 }
 
 #card-header {
@@ -75,8 +76,4 @@ span:hover {
 
 .panel-footer h5{
     color: rgb(59, 59, 59);
-}
-
-.body{
-  border: 10px solid red
 }
