@@ -7,6 +7,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useUser } from "../../contexts/UserContext";
 import loginSchema from "../../validations/LoginFormValidation";
 import Footer from "../../view/page/CustomFooter";
+import Header from "../../view/page/CustomHeader";
 
 function Register() {
 
@@ -27,10 +28,12 @@ function Register() {
     setData(logindata);
     navigate("/home");
   };
+  
 
   return (
     <React.Fragment>
       <div id="register-body">
+        <Header></Header>
         <div className="container pt-5">
           <div className="col-md-8 col-lg-5 mx-auto">
             <div className="card">
@@ -48,7 +51,7 @@ function Register() {
                       {...register("email", { required: true })}
                       style={{
                         border: errors.email
-                          ? "2px solid rgb(216, 52, 79)"
+                          ? "3px solid rgb(216, 52, 79)"
                           : "",
                       }}
                       placeholder={
@@ -65,31 +68,32 @@ function Register() {
                       />
                     </small>
                   </div>
-                  
-                  <div className="form-group mt-3">
-                    <label htmlFor="">Contrase&ntilde;a</label>
+
+                  <div className="form-group">
+                    <label htmlFor="">Correo</label>
                     <input
                       type="text"
-                      {...register("password", { required: true })}
+                      {...register("email", { required: true })}
                       style={{
-                        border: errors.password
-                          ? "2px solid rgb(216, 52, 79)"
+                        border: errors.email
+                          ? "3px solid rgb(216, 52, 79)"
                           : "",
                       }}
                       placeholder={
-                        errors.password
+                        errors.email
                           ? "Este campo es requerido*"
-                          : "Ingrese su contraseña"
+                          : "Ingrese su correo"
                       }
                     />
                     <small>
                       <ErrorMessage
                         errors={errors}
-                        name="password"
+                        name="email"
                         render={({ message }) => <p>{message}</p>}
                       />
                     </small>
                   </div>
+
                   <button
                     className="btn btn-cpurple btn-block d-flex justify-content-center align-content-between"
                     type="submit"
@@ -100,6 +104,7 @@ function Register() {
                 </form>
                 <p>{logindata}</p>
               </div>
+
               <div className="panel-footer d-flex justify-content-center">
                 <Link to="/register">
                   <h5 className="p-4">
@@ -109,15 +114,17 @@ function Register() {
               </div>
             </div>
             <div></div>
-            <div className="mt-3">
+
+            <div className="mt-3 mb-5">
               <Link to="/register">
                 <h6 className="bottom-title">Volver al inicio</h6>
               </Link>
             </div>
           </div>
         </div>
+
+        <Footer></Footer>
       </div>
-      <Footer></Footer>
     </React.Fragment>
   );
 }
