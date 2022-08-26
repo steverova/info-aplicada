@@ -154,7 +154,7 @@ function RegisterForm() {
                             placeholder={
                               errors.password_confirm
                                 ? "Este campo es requerido*"
-                                : "Ingrese su contraseña"
+                                : "Verifique su contraseña"
                             }
                           />
                           <small>
