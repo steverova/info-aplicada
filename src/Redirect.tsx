@@ -11,9 +11,9 @@ export function Redirect() {
       <Router>
         <Routes>
           <Route path="Login" element={<Login />} />
-          <Route path="/" element={<Login />} />
-          <Route path="Register" element={<RegisterForm />} />
-          <Route path="Home" element={<Home />} />
+          <Route path="/" element={<Login/>} />
+          <Route path="Register" element={<RegisterForm/>} />
+          <Route path="Home" element={<Home/>} />
         </Routes>
       </Router>
     );

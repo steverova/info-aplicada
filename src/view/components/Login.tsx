@@ -8,9 +8,9 @@ import { useUser } from "../../contexts/UserContext";
 import loginSchema from "../../validations/LoginFormValidation";
 import Footer from "../../view/page/CustomFooter";
 import Header from "../../view/page/CustomHeader";
+import Swal from "sweetalert2";
 
 function Register() {
-
   const navigate = useNavigate();
   const {
     register,
@@ -21,19 +21,30 @@ function Register() {
   });
 
   const [logindata, setLogindata] = useState("");
-  const {setData} = useUser();
+  const { data, setData } = useUser();
+  const [isShown, setIsSHown] = useState(false);
 
   const onSubmit = (logindata: any) => {
     setLogindata(JSON.stringify(logindata));
     setData(logindata);
-    navigate("/home");
+
+    if (
+      logindata.email === "steven@gmail.com" &&
+      logindata.password === "1234567890"
+    ) {
+      localStorage.setItem("loginData", JSON.stringify(logindata));
+      navigate("/home");
+    }
   };
-  
+
+  const togglePassword = () => {
+    setIsSHown((isShown) => !isShown);
+  };
 
   return (
     <React.Fragment>
+      <Header></Header>
       <div id="register-body">
-        <Header></Header>
         <div className="container pt-5">
           <div className="col-md-8 col-lg-5 mx-auto">
             <div className="card">
@@ -51,7 +62,7 @@ function Register() {
                       {...register("email", { required: true })}
                       style={{
                         border: errors.email
-                          ? "3px solid rgb(216, 52, 79)"
+                          ? "2px solid rgb(216, 52, 79)"
                           : "",
                       }}
                       placeholder={
@@ -69,31 +80,40 @@ function Register() {
                     </small>
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="">Correo</label>
+                  <div className="form-group mt-3">
+                    <label htmlFor="">Contrase&ntilde;a</label>
                     <input
-                      type="text"
-                      {...register("email", { required: true })}
+                      type={isShown ? "text" : "password"}
+                      {...register("password", { required: true })}
                       style={{
-                        border: errors.email
-                          ? "3px solid rgb(216, 52, 79)"
+                        border: errors.password
+                          ? "2px solid rgb(216, 52, 79)"
                           : "",
                       }}
                       placeholder={
-                        errors.email
+                        errors.password
                           ? "Este campo es requerido*"
-                          : "Ingrese su correo"
+                          : "Ingrese su contraseña"
                       }
                     />
                     <small>
                       <ErrorMessage
                         errors={errors}
-                        name="email"
+                        name="password"
                         render={({ message }) => <p>{message}</p>}
                       />
                     </small>
                   </div>
 
+                  <div id="pass" className="form-group">
+                    <input
+                      id="passwordVisibility"
+                      type="checkbox"
+                      checked={isShown}
+                      onChange={togglePassword}
+                    />
+                    <label htmlFor="">Mostrar contraseña</label>
+                  </div>
                   <button
                     className="btn btn-cpurple btn-block d-flex justify-content-center align-content-between"
                     type="submit"
@@ -104,7 +124,6 @@ function Register() {
                 </form>
                 <p>{logindata}</p>
               </div>
-
               <div className="panel-footer d-flex justify-content-center">
                 <Link to="/register">
                   <h5 className="p-4">
@@ -114,17 +133,15 @@ function Register() {
               </div>
             </div>
             <div></div>
-
-            <div className="mt-3 mb-5">
+            <div className="mt-3">
               <Link to="/register">
                 <h6 className="bottom-title">Volver al inicio</h6>
               </Link>
             </div>
           </div>
         </div>
-
-        <Footer></Footer>
       </div>
+      <Footer></Footer>
     </React.Fragment>
   );
 }

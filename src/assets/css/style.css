@@ -2,6 +2,12 @@
   background-color: rgb(169, 105, 224);
 }
 
+#register-body {
+  background-color: rgb(153, 106, 194);
+  height: 100vh;
+  width: 100%;
+}
+
 #card-header {
   background-color: rgb(187, 141, 227);
   color: rgb(255, 255, 255);
@@ -21,7 +27,8 @@
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="password"] {
   width: 100%;
   padding: 7px 20px;
   box-sizing: border-box;
@@ -64,29 +71,18 @@ span:hover {
   border-bottom-left-radius: 15px;
 }
 
-.panel-footer span {
-  color: rgb(153, 106, 194);
+.panel-footer span{
+    color: rgb(153, 106, 194);
 }
 
-.panel-footer h5 {
-  color: rgb(59, 59, 59);
+.panel-footer h5{
+    color: rgb(59, 59, 59);
 }
 
-#register-body{
- background-color: rgb(153, 106, 194);
+#passwordVisibility{
+  accent-color: rgb(151, 72, 221);
 }
 
-html{
-  height: 100%;
-}
-
-body{
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-.myfooter {
-margin-top:auto;
-background-color:  rgb(218, 216, 216);
+#pass{
+margin-left: 1em;
 }
