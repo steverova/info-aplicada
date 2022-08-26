@@ -34,6 +34,12 @@ function Register() {
     ) {
       localStorage.setItem("loginData", JSON.stringify(logindata));
       navigate("/home");
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "ALGO SALIO MAL",
+        text: "Verifica los datos de inicio de sesion",
+      });
     }
   };
 

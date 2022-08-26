@@ -3,6 +3,7 @@ import { useUser } from "../../contexts/UserContext";
 
 const Home = () => {
   const { data } = useUser();
+  
 
   const logindata = JSON.parse(localStorage.getItem("loginData") || "");
   console.log(logindata);
